@@ -30,5 +30,14 @@ SQL
 
 
 
+### to show all columns of table - command
+- select * from table_name;
+
+### to show particular columns of table - command
+- select column_name1, column_name2, column_name_n from table_name;
+
+
+
+
 
 
