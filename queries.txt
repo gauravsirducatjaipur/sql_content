@@ -1,0 +1,197 @@
+CREATE DATABASE database_name;
+CREATE DATABASE IF NOT EXISTS database_name;
+SHOW DATABASES;
+
+DROP DATABASE database_name;
+DROP DATABASE IF EXISTS database_name;
+
+USE database_name;
+SELECT DB_NAME() AS CurrentDatabase;
+
+BACKUP DATABASE databasename
+TO DISK = 'filepath';
+
+BACKUP DATABASE databasename
+TO DISK = 'filepath'
+WITH DIFFERENTIAL;
+
+
+
+CREATE TABLE table_name (
+  column1 datatype constraint,
+  column2 datatype constraint,
+  column3 datatype constraint,
+  ....
+);
+
+
+ALTER TABLE table_name
+ADD column_name datatype;
+
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+ALTER TABLE table_name
+RENAME COLUMN old_name to new_name;
+
+ALTER TABLE table_name
+MODIFY column_name new_datatype constraint;
+
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name constraint_definition;
+
+ALTER TABLE table_name
+RENAME TO new_table_name;
+
+DROP TABLE table_name;
+
+DROP TABLE IF EXISTS table_name;
+
+TRUNCATE TABLE table_name;
+
+
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+
+INSERT INTO table_name
+VALUES (value1, value2, value3, ...);
+
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...),
+VALUES (value1, value2, value3, ...),
+VALUES (value1, value2, value3, ...);
+
+
+DELETE FROM table_name WHERE condition;
+
+DELETE FROM table_name;
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...;
+
+
+
+
+
+SELECT column_names
+FROM table_name
+WHERE column_name IS NULL;
+
+
+SELECT column_names
+FROM table_name
+WHERE column_name IS NOT NULL;
+
+
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 AND condition2 AND condition3 ...;
+
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 OR condition2 OR condition3 ...;
+
+
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;
+
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+
+
+SELECT DISTINCT column1, column2, ...
+FROM table_name;
+
+
+SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+
+
+SELECT MAX(column_name)
+FROM table_name
+WHERE condition;
+
+
+SELECT COUNT([DISTINCT] column_name | *)
+FROM table_name
+WHERE condition;
+
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+
+
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+
+
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1, value2, ...);
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name NOT IN (value1, value2, ...);
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name NOT BETWEEN value1 AND value2;
+
+
+SELECT column_name AS alias_name
+FROM table_name;
+
+
+SELECT column_name(s)
+FROM table_name AS alias_name;
+
+
+SELECT * INTO newtable [IN external_db]
+FROM sourcetable
+WHERE condition;
+
+
+INSERT INTO target_table
+SELECT * FROM source_table
+WHERE condition;
+
+
+CASE
+  WHEN condition1 THEN result1
+  WHEN condition2 THEN result2
+  WHEN conditionN THEN resultN
+  ELSE default_result
+END;
+
+
+
+
+
