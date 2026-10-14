@@ -1,3 +1,4 @@
+```
 create database practiceset1;
 use practiceset1;
 
@@ -301,4 +302,4 @@ FROM employees;
 -- 27. Count unique performance ratings
 SELECT COUNT(DISTINCT performance_rating) AS rating_types
 FROM employees;
-
+```
