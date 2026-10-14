@@ -302,4 +302,372 @@ FROM employees;
 -- 27. Count unique performance ratings
 SELECT COUNT(DISTINCT performance_rating) AS rating_types
 FROM employees;
+
+. WHERE with AND Operator
+All conditions connected by AND must be true.
+-- 28. Employees earning more than 40000 and having over 3 years of experience
+SELECT employee_id, first_name, salary, experience_years
+FROM employees
+WHERE salary > 40000
+AND experience_years > 3;
+
+-- 29. Employees from Mumbai earning at least 50000
+SELECT employee_id, first_name, city, salary
+FROM employees
+WHERE city = 'Mumbai'
+AND salary >= 50000;
+
+-- 30. Employees younger than 30 with at least 2 years of experience
+SELECT employee_id, first_name, age, experience_years
+FROM employees
+WHERE age < 30
+AND experience_years >= 2;
+
+-- 31. Female employees working in HR
+SELECT employee_id, first_name, gender, department
+FROM employees
+WHERE gender = 'F'
+AND department = 'HR';
+
+-- 32. Active employees with a performance rating of 4 or higher
+SELECT employee_id, first_name, employment_status, performance_rating
+FROM employees
+WHERE employment_status = 'Active'
+AND performance_rating >= 4;
+
+-- 33. Employees with salary between 30000 and 60000
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE salary >= 30000
+AND salary <= 60000;
+
+-- 34. Employees whose IDs are greater than 10 and less than 40
+SELECT employee_id, first_name, last_name, department
+FROM employees
+WHERE employee_id > 10
+AND employee_id < 40;
+
+
+F. WHERE with Multiple Conditions
+-- 35. Employees from Bhopal with IDs between 10 and 40
+SELECT employee_id, first_name, last_name, city, age, gender
+FROM employees
+WHERE gender = 'F'
+AND city = 'Bhopal'
+AND employee_id > 10
+AND employee_id < 40;
+
+-- 36. Employees in IT or HR who earn more than 40000
+SELECT employee_id, first_name, department, salary
+FROM employees
+WHERE (department = 'IT' OR department = 'HR')
+AND salary > 40000;
+
+-- 37. Employees with at least 5 years of experience and a bonus above 5000
+SELECT employee_id, first_name, experience_years, bonus
+FROM employees
+WHERE experience_years >= 5
+AND bonus > 5000;
+
+-- 38. Active employees under 35 earning more than 45000
+SELECT employee_id, first_name, age, salary, employment_status
+FROM employees
+WHERE employment_status = 'Active'
+AND age < 35
+AND salary > 45000;
+
+-- 39. Employees with a rating of at least 4 and fewer than 10 overtime hours
+SELECT employee_id, first_name, performance_rating, overtime_hours
+FROM employees
+WHERE performance_rating >= 4
+AND overtime_hours < 10;
+
+-- 40. Employees from Jaipur or Mumbai with at least 3 years of experience
+SELECT employee_id, first_name, city, experience_years
+FROM employees
+WHERE (city = 'Jaipur' OR city = 'Mumbai')
+AND experience_years >= 3;
+
+
+G. More Comparison Practice
+-- 41. Employees whose salary is not 50000
+SELECT * FROM employees
+WHERE salary <> 50000;
+
+-- 42. Employees with ratings below 3
+SELECT * FROM employees
+WHERE performance_rating < 3;
+
+-- 43. Employees with zero overtime hours
+SELECT * FROM employees
+WHERE overtime_hours = 0;
+
+-- 44. Employees who received no bonus amount
+SELECT * FROM employees
+WHERE bonus = 0;
+
+-- 45. Employees with a recorded performance rating
+SELECT * FROM employees
+WHERE performance_rating IS NOT NULL;
+
+-- 46. Employees whose bonus is missing
+SELECT * FROM employees
+WHERE bonus IS NULL;
+
+-- 47. Employees with a recorded training-hours value
+SELECT * FROM employees
+WHERE training_hours IS NOT NULL;
+
+-- 48. Employees with experience of at least 10 years
+SELECT * FROM employees
+WHERE experience_years >= 10;
+
+-- 49. Employees earning less than 25000 or more than 80000
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE salary < 25000
+OR salary > 80000;
+
+-- 50. Employees who are not active
+SELECT employee_id, first_name, employment_status
+FROM employees
+WHERE employment_status != 'Active';
+
+
+
+
+
+
+
+
+3. AND, OR and Multiple Conditions
+-- 1. Employees from Jaipur earning at least 50000
+SELECT * FROM employees
+WHERE city = 'Jaipur' AND salary >= 50000;
+
+-- 2. Employees from Jaipur or Delhi
+SELECT * FROM employees
+WHERE city = 'Jaipur' OR city = 'Delhi';
+
+-- 3. Employees whose IDs are between 20 and 40
+SELECT * FROM employees
+WHERE city = 'Jaipur'
+AND (employee_id >= 20 AND employee_id <= 40);
+
+-- 4. Employees from Malviya Nagar or female employees
+SELECT * FROM employees
+WHERE address = 'Malviya Nagar' OR gender = 'F';
+
+-- 5. Male employees with 3–5 years of experience and names ending in n
+SELECT * FROM employees
+WHERE gender = 'M'
+AND experience_years BETWEEN 3 AND 5
+AND first_name LIKE '%n';
+
+-- 6. Employees from Jaipur whose first name starts with A
+SELECT * FROM employees
+WHERE city = 'Jaipur'
+AND first_name LIKE 'A%';
+
+-- 7. Employees younger than 30 or from Mumbai
+SELECT employee_id, first_name, age, city
+FROM employees
+WHERE age < 30 OR city = 'Mumbai';
+
+-- 8. Employees aged between 23 and 25
+SELECT employee_id, first_name, age, city
+FROM employees
+WHERE age >= 23 AND age <= 25;
+
+-- 9. Active employees in IT with a rating of at least 4
+SELECT * FROM employees
+WHERE employment_status = 'Active'
+AND department = 'IT'
+AND performance_rating >= 4;
+
+-- 10. Employees earning above 50000 or receiving a bonus above 10000
+SELECT employee_id, first_name, salary, bonus
+FROM employees
+WHERE salary > 50000 OR bonus > 10000;
+
+
+4. BETWEEN and NOT BETWEEN
+BETWEEN range ki dono boundaries ko include karta hai.
+-- 1. Employees with IDs between 20 and 40
+SELECT * FROM employees
+WHERE employee_id BETWEEN 20 AND 40;
+
+-- 2. Employees whose IDs are outside 20–40
+SELECT * FROM employees
+WHERE employee_id NOT BETWEEN 20 AND 40;
+
+-- 3. Employees aged between 23 and 25
+SELECT employee_id, first_name, age, city
+FROM employees
+WHERE age BETWEEN 23 AND 25;
+
+-- 4. Count employees aged between 23 and 25
+SELECT COUNT(employee_id) AS total_employees
+FROM employees
+WHERE age BETWEEN 23 AND 25;
+
+-- 5. Same result using comparison operators
+SELECT COUNT(employee_id) AS total_employees
+FROM employees
+WHERE age >= 23 AND age <= 25;
+
+-- 6. Employees with IDs between 1 and 5
+SELECT * FROM employees
+WHERE employee_id BETWEEN 1 AND 5;
+
+-- 7. Employees with IDs between 15 and 18
+SELECT * FROM employees
+WHERE employee_id BETWEEN 15 AND 18;
+
+-- 8. Display IDs from 15 to 18
+SELECT employee_id
+FROM employees
+WHERE employee_id BETWEEN 15 AND 18;
+
+-- 9. Employees earning between 30000 and 60000
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE salary BETWEEN 30000 AND 60000;
+
+-- 10. Employees with experience outside 2–8 years
+SELECT employee_id, first_name, experience_years
+FROM employees
+WHERE experience_years NOT BETWEEN 2 AND 8;
+
+-- 11. Employees with ratings between 3 and 5
+SELECT employee_id, first_name, performance_rating
+FROM employees
+WHERE performance_rating BETWEEN 3 AND 5;
+
+-- 12. Employees with bonuses between 5000 and 15000
+SELECT employee_id, first_name, bonus
+FROM employees
+WHERE bonus BETWEEN 5000 AND 15000;
+
+
+5. IN and NOT IN
+-- 1. Employees from Jaipur, Delhi or Mumbai
+SELECT * FROM employees
+WHERE city IN ('Jaipur', 'Delhi', 'Mumbai');
+
+-- 2. Employees not from Jaipur or Delhi
+SELECT * FROM employees
+WHERE city NOT IN ('Jaipur', 'Delhi');
+
+-- 3. Display selected employee details
+SELECT employee_id, first_name, age, city
+FROM employees
+WHERE city IN ('Jaipur', 'Mumbai', 'Delhi');
+
+-- 4. Count employees from selected cities
+SELECT COUNT(employee_id) AS employees_from_selected_cities
+FROM employees
+WHERE city IN ('Jaipur', 'Mumbai', 'Delhi');
+
+-- 5. Employees from Lucknow, Delhi or Pune
+SELECT * FROM employees
+WHERE city IN ('Lucknow', 'Delhi', 'Pune');
+
+-- 6. Employees from IT, HR or Finance
+SELECT * FROM employees
+WHERE department IN ('IT', 'HR', 'Finance');
+
+-- 7. Employees from multiple departments
+SELECT * FROM employees
+WHERE department IN ('IT', 'HR', 'Finance', 'Marketing');
+
+-- 8. Employees with selected employment statuses
+SELECT * FROM employees
+WHERE employment_status IN ('Active', 'Inactive');
+
+-- 9. Employees with performance ratings 3, 4 or 5
+SELECT employee_id, first_name, performance_rating
+FROM employees
+WHERE performance_rating IN (3, 4, 5);
+
+-- 10. Employees with selected blood groups
+SELECT employee_id, first_name, blood_group
+FROM employees
+WHERE blood_group IN ('A+', 'B+', 'O+');
+
+-- 11. Employees from Jaipur or Mumbai, sorted by descending ID
+SELECT employee_id, first_name, age, city
+FROM employees
+WHERE city IN ('Jaipur', 'Mumbai')
+ORDER BY employee_id DESC;
+
+-- 12. Employees whose IDs are not 1, 2, 3, 4 or 5
+SELECT * FROM employees
+WHERE employee_id NOT IN (1, 2, 3, 4, 5);
+
+
+6. LIKE Operator and Wildcards
+- % — zero ya multiple characters.
+- _ — exactly one character.
+-- 1. First names starting with A
+SELECT * FROM employees
+WHERE first_name LIKE 'A%';
+
+-- 2. First names ending with a
+SELECT * FROM employees
+WHERE first_name LIKE '%a';
+
+-- 3. First names containing a
+SELECT * FROM employees
+WHERE first_name LIKE '%a%';
+
+-- 4. First names whose second character is a
+SELECT * FROM employees
+WHERE first_name LIKE '_a%';
+
+-- 5. First names ending in n
+SELECT * FROM employees
+WHERE first_name LIKE '%n';
+
+-- 6. First names containing e
+SELECT DISTINCT first_name
+FROM employees
+WHERE first_name LIKE '%e%';
+
+-- 7. Employees whose names start with A and whose city starts with J
+SELECT employee_id, first_name, last_name, city, age, gender
+FROM employees
+WHERE first_name LIKE 'A%'
+AND city LIKE 'J%'
+AND employee_id > 1;
+
+-- 8. Emails with exactly 15 characters before @example.com
+SELECT * FROM employees
+WHERE email LIKE '_______________@example.com';
+
+-- 9. Employees whose last names start with S
+SELECT * FROM employees
+WHERE last_name LIKE 'S%';
+
+-- 10. Employees whose first names contain 'an'
+SELECT * FROM employees
+WHERE first_name LIKE '%an%';
+
+-- 11. Employees whose phone numbers start with 98
+SELECT * FROM employees
+WHERE phone LIKE '98%';
+
+-- 12. Employees whose job roles contain 'Manager'
+SELECT * FROM employees
+WHERE job_role LIKE '%Manager%';
+
+-- 13. Employees whose cities end with 'pur'
+SELECT * FROM employees
+WHERE city LIKE '%pur';
+
+-- 14. Employees whose first names have exactly five characters
+SELECT * FROM employees
+WHERE first_name LIKE '_____';
+
+
 ```
